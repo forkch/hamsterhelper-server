@@ -19,6 +19,9 @@ module.exports = function (grunt) {
     injector: 'grunt-asset-injector',
     buildcontrol: 'grunt-build-control'
   });
+  
+  grunt.loadNpmTasks('grunt-npm-install');
+
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
@@ -560,7 +563,7 @@ module.exports = function (grunt) {
     this.async();
   });
 grunt.registerTask('heroku',
-    ['build', 'env:all', 'env:prod']);
+    ['npm-install', 'build', 'env:all', 'env:prod']);
 
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
