@@ -1,2 +1,2 @@
-web: grunt serve:dist --force
+web: node server/app.js 
 

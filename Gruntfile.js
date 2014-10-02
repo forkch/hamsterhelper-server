@@ -420,7 +420,7 @@ module.exports = function (grunt) {
       },
       dist: [
         'sass',
-        'imagemin',
+        //'imagemin',
         'svgmin'
       ]
     },
@@ -559,6 +559,8 @@ module.exports = function (grunt) {
   grunt.registerTask('express-keepalive', 'Keep grunt running', function() {
     this.async();
   });
+grunt.registerTask('heroku',
+    ['build', 'env:all', 'env:prod']);
 
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
