@@ -21,7 +21,6 @@ var mongoose = require('mongoose');
 
 module.exports = function(app) {
   var env = app.get('env');
-
   app.set('views', config.root + '/server/views');
   app.engine('html', require('ejs').renderFile);
   app.set('view engine', 'html');
@@ -40,6 +39,7 @@ module.exports = function(app) {
     saveUninitialized: true,
     store: new mongoStore({ mongoose_connection: mongoose.connection })
   }));
+
   
   if ('production' === env) {
     app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
@@ -56,4 +56,7 @@ module.exports = function(app) {
     app.use(morgan('dev'));
     app.use(errorHandler()); // Error handler - has to be last
   }
+
+  console.log(config.root);
+  console.log(config.appPath);
 };
