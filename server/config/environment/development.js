@@ -8,5 +8,5 @@ module.exports = {
     uri: 'mongodb://localhost/hamsterhelper-dev'
   },
 
-  seedDB: true
+  seedDB: false
 };

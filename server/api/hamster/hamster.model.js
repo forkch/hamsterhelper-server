@@ -7,7 +7,7 @@ var HamsterSchema = new Schema({
   name: String,
   male: Boolean,
   gencode: String,
-  hamsterImage: String,
+  image: String,
   birthday: Date,
   motherId: {type: Schema.ObjectId, ref: 'Hamster'},
   fatherId: {type: Schema.ObjectId, ref: 'Hamster'}
