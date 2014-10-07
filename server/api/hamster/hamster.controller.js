@@ -1,12 +1,11 @@
 'use strict';
 
 var _ = require('lodash');
-
-var os = require('os');
 var path = require('path');
-var fs = require('fs');
-var uuid = require('node-uuid');
 
+var uuid = require('node-uuid');
+var config = require('../../config/environment');
+var filestorage = config.filestorage;
 
 var Hamster = require('./hamster.model');
 
@@ -86,7 +85,7 @@ exports.destroy = function (req, res) {
 exports.getImage = function (req, res) {
   var imageFile = path.join('images/hamsters', req.params.imagename);
   //imageFile = 'image.jpg';
-  console.log('getImage():'+ imageFile);
+  console.log('getImage():' + imageFile);
   res.status(200).sendfile(imageFile);
 
 }
@@ -95,9 +94,7 @@ exports.uploadImage = function (req, res) {
 
   var imageUuid = uuid.v4();
   req.busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
-    var saveTo = path.join('images/hamsters', imageUuid);
-    console.log(saveTo);
-    file.pipe(fs.createWriteStream(saveTo));
+    filestorage.store(file, imageUuid);
   });
   req.busboy.on('finish', function () {
     console.log('finish');
@@ -123,7 +120,6 @@ exports.uploadImage = function (req, res) {
     });
   });
   return req.pipe(req.busboy);
-  res.send(200);
 };
 
 function handleError(res, err) {

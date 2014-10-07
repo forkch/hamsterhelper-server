@@ -20,5 +20,11 @@ module.exports = {
             process.env.OPENSHIFT_MONGODB_DB_URL+process.env.OPENSHIFT_APP_NAME ||
             'mongodb://localhost/hamsterhelper-dev'
   },
-  seedDB: true
+  seedDB: true,
+  filestorage : require('../../components/filestorage/s3.js'),
+  s3: {
+    awsAccessKey: 'AKIAIBV5YYAX74PRZJGA',
+    awsSecretKey: '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',
+    s3BucketHamsterImages: 'hamsterhelper-dev-hamster-images'
+  }
 };
