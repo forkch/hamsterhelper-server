@@ -93,10 +93,9 @@ exports.getImage = function (req, res) {
 exports.uploadImage = function (req, res) {
 
   var imageUuid = uuid.v4();
-  console.log(req.body.image);
   req.busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
     filestorage.store(file, imageUuid, function() {
-      console.log('finish');
+      console.log('saving hamster image with filename ' + imageUuid);
       Hamster.findById(req.params.id, function (err, hamster) {
         if (err) {
           return handleError(res, err);

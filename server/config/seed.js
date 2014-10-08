@@ -37,7 +37,8 @@ Hamster.find({}).remove(function () {
     _id: idOnyx,
     name: 'Onyx',
     male: false,
-    birthday: new Date
+    birthday: new Date,
+    image: 'image.jpg'
   }, {
     _id: idBinu,
     name: 'Binu',

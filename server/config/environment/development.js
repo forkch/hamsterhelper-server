@@ -8,7 +8,7 @@ module.exports = {
     uri: 'mongodb://localhost/hamsterhelper-dev'
   },
 
-  seedDB: false,
+  seedDB: true,
   //filestorage : require('../../components/filestorage/s3.js'),
   filestorage : require('../../components/filestorage/local.js'),
   s3: {
