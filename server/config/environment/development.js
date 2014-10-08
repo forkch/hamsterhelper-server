@@ -9,8 +9,8 @@ module.exports = {
   },
 
   seedDB: false,
-  //filestorage : require('../../components/filestorage/s3.js'),
-  filestorage : require('../../components/filestorage/local.js'),
+  filestorage : require('../../components/filestorage/s3.js'),
+  //filestorage : require('../../components/filestorage/local.js'),
   s3: {
     awsAccessKey: 'AKIAIBV5YYAX74PRZJGA',
     awsSecretKey: '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',
