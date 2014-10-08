@@ -9,11 +9,11 @@ module.exports = {
   },
 
   seedDB: false,
-  filestorage : require('../../components/filestorage/s3.js'),
-  //filestorage : require('../../components/filestorage/local.js'),
+  //filestorage : require('../../components/filestorage/s3.js'),
+  filestorage : require('../../components/filestorage/local.js'),
   s3: {
-    awsAccessKey: 'AKIAIBV5YYAX74PRZJGA',
-    awsSecretKey: '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',
-    s3BucketHamsterImages: 'hamsterhelper-dev-hamster-images'
+    awsAccessKey: process.env.AWS_ACCESS_KEY,
+    awsSecretKey: process.env.AWS_SECRET_KEY,
+    s3BucketHamsterImages: process.env.S3_BUCKET_HAMSTER_IMAGES
   }
 };
