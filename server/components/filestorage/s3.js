@@ -6,7 +6,7 @@ var Uploader = require('s3-streaming-upload').Uploader;
 
 module.exports = {
 
-  store : function (file, filename) {
+  store : function (file, filename, finishFunction) {
 
     var config = require('../../config/environment');
     upload = new Uploader({
@@ -20,10 +20,12 @@ module.exports = {
 
     upload.on('completed', function (err, res) {
       console.log('upload completed');
+      finishFunction(err);
     });
 
     upload.on('failed', function (err) {
       console.log('upload failed with error', err);
+      finishFunction(err);
     });
   }
 }

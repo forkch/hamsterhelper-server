@@ -94,30 +94,32 @@ exports.uploadImage = function (req, res) {
 
   var imageUuid = uuid.v4();
   req.busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
-    filestorage.store(file, imageUuid);
-  });
-  req.busboy.on('finish', function () {
-    console.log('finish');
-    Hamster.findById(req.params.id, function (err, hamster) {
-      if (err) {
-        return handleError(res, err);
-      }
-      if (!hamster) {
-        return res.send(404);
-      }
-
-      hamster.image = imageUuid;
-      console.log(hamster.name);
-      hamster.save(function (err, hamster) {
+    filestorage.store(file, imageUuid, function() {
+      console.log('finish');
+      Hamster.findById(req.params.id, function (err, hamster) {
         if (err) {
           return handleError(res, err);
         }
-        console.log(hamster.image);
-        res.writeHead(200, { 'Connection': 'close' });
-        res.end(imageUuid);
-      });
+        if (!hamster) {
+          return res.send(404);
+        }
 
+        hamster.image = imageUuid;
+        console.log(hamster.name);
+        hamster.save(function (err, hamster) {
+          if (err) {
+            return handleError(res, err);
+          }
+          console.log(hamster.image);
+          res.writeHead(200, { 'Connection': 'close' });
+          res.end(imageUuid);
+        });
+
+      });
     });
+  });
+  req.busboy.on('finish', function () {
+
   });
   return req.pipe(req.busboy);
 };

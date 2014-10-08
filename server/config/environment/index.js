@@ -41,12 +41,12 @@ var all = {
     }
   },
 
-  filestorage : require('../../components/filestorage/s3.js'),
+  filestorage : require('../../components/filestorage/null.js'),
 
   s3: {
-    awsAccessKey: process.env.AWS_ACCESS_KEY,
-    awsSecretKey: process.env.AWS_SECRET_KEY,
-    s3BucketHamsterImages: process.env.S3_BUCKET_HAMSTER_IMAGES
+    awsAccessKey: undefined,
+    awsSecretKey: undefined,
+    s3BucketHamsterImages: undefined
 },
 
   twitter: {
