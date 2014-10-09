@@ -15,7 +15,8 @@ module.exports = {
       secretKey: config.s3.awsSecretKey,
       bucket:     config.s3.s3BucketHamsterImages,
       objectName: filename,
-      stream:     file
+      stream:     file,
+      CacheControl: 'max-age=31536000'
     });
 
     upload.on('completed', function (err, res) {
