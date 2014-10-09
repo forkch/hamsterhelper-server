@@ -8,6 +8,7 @@ module.exports = {
 
   store : function (file, filename, finishFunction) {
 
+    console.log('storing to s3 ' + filename);
     var config = require('../../config/environment');
     upload = new Uploader({
       // credentials to access AWS
